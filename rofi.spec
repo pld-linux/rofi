@@ -1,11 +1,11 @@
 Summary:	A window switcher, application launcher and dmenu replacement
 Name:		rofi
-Version:	1.6.1
+Version:	1.7.0
 Release:	1
 License:	MIT
 Group:		X11/Applications
 Source0:	https://github.com/davatorium/rofi/releases/download/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	8e2c08873f802a14c8b8e5d43f2a1261
+# Source0-md5:	97e1500f9c2ad14d0ab389ab1a119c4c
 URL:		https://github.com/davatorium/rofi
 BuildRequires:	bison
 BuildRequires:	cairo-devel
@@ -18,9 +18,9 @@ BuildRequires:	libxcb-devel
 BuildRequires:	pango-devel
 BuildRequires:	pkgconfig
 BuildRequires:	startup-notification-devel
+BuildRequires:	xcb-util-cursor-devel
 BuildRequires:	xcb-util-devel
 BuildRequires:	xcb-util-wm-devel
-BuildRequires:	xcb-util-xrm-devel
 BuildRequires:	xorg-lib-libxkbcommon-devel >= 0.4.1
 BuildRequires:	xorg-lib-libxkbcommon-x11-devel
 Requires:	glib2 >= 1:2.40
