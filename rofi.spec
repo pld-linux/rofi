@@ -1,11 +1,11 @@
 Summary:	A window switcher, application launcher and dmenu replacement
 Name:		rofi
-Version:	1.7.0
+Version:	1.7.1
 Release:	1
 License:	MIT
 Group:		X11/Applications
 Source0:	https://github.com/davatorium/rofi/releases/download/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	97e1500f9c2ad14d0ab389ab1a119c4c
+# Source0-md5:	4a420d7091ab60b70e7ccbca01d9e2e5
 URL:		https://github.com/davatorium/rofi
 BuildRequires:	bison
 BuildRequires:	cairo-devel
@@ -62,7 +62,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS Changelog README.md
+%doc AUTHORS Changelog
 %attr(755,root,root) %{_bindir}/rofi
 %attr(755,root,root) %{_bindir}/rofi-sensible-terminal
 %attr(755,root,root) %{_bindir}/rofi-theme-selector
