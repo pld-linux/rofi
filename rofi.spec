@@ -1,11 +1,11 @@
 Summary:	A window switcher, application launcher and dmenu replacement
 Name:		rofi
-Version:	1.7.1
+Version:	1.7.2
 Release:	1
 License:	MIT
 Group:		X11/Applications
-Source0:	https://github.com/davatorium/rofi/releases/download/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	4a420d7091ab60b70e7ccbca01d9e2e5
+Source0:	https://github.com/davatorium/rofi/releases/download/%{version}/%{name}-%{version}.tar.xz
+# Source0-md5:	320ce915965e7e4e4d61904fdb026cef
 URL:		https://github.com/davatorium/rofi
 BuildRequires:	bison
 BuildRequires:	cairo-devel
@@ -18,11 +18,13 @@ BuildRequires:	libxcb-devel
 BuildRequires:	pango-devel
 BuildRequires:	pkgconfig
 BuildRequires:	startup-notification-devel
+BuildRequires:	tar >= 1:1.22
 BuildRequires:	xcb-util-cursor-devel
 BuildRequires:	xcb-util-devel
 BuildRequires:	xcb-util-wm-devel
 BuildRequires:	xorg-lib-libxkbcommon-devel >= 0.4.1
 BuildRequires:	xorg-lib-libxkbcommon-x11-devel
+BuildRequires:	xz
 Requires:	glib2 >= 1:2.40
 Requires:	xorg-lib-libxkbcommon >= 0.4.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -62,7 +64,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS Changelog
+%doc AUTHORS Changelog README.md
 %attr(755,root,root) %{_bindir}/rofi
 %attr(755,root,root) %{_bindir}/rofi-sensible-terminal
 %attr(755,root,root) %{_bindir}/rofi-theme-selector
