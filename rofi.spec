@@ -1,3 +1,7 @@
+#
+# Conditional build:
+%bcond_without	tests		# don't build tests
+
 Summary:	A window switcher, application launcher and dmenu replacement
 Name:		rofi
 Version:	1.7.3
@@ -9,7 +13,7 @@ Source0:	https://github.com/davatorium/rofi/releases/download/%{version}/%{name}
 URL:		https://github.com/davatorium/rofi
 BuildRequires:	bison
 BuildRequires:	cairo-devel
-BuildRequires:	check-devel >= 0.11.0
+%{?with_tests:BuildRequires:	check-devel >= 0.11.0}
 BuildRequires:	flex >= 2.5.39
 BuildRequires:	gdk-pixbuf2-devel
 BuildRequires:	glib2-devel >= 1:2.40
@@ -17,6 +21,7 @@ BuildRequires:	librsvg-devel
 BuildRequires:	libxcb-devel
 BuildRequires:	pango-devel
 BuildRequires:	pkgconfig
+BuildRequires:	rpmbuild(macros) >= 1.527
 BuildRequires:	startup-notification-devel
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xcb-util-cursor-devel
@@ -49,7 +54,8 @@ Header files for rofi.
 
 %build
 %configure \
-	--disable-silent-rules
+	--disable-silent-rules \
+	%{__enable_disable check}
 
 %{__make}
 
