@@ -9,7 +9,7 @@ Source0:	https://github.com/davatorium/rofi/releases/download/%{version}/%{name}
 URL:		https://github.com/davatorium/rofi
 BuildRequires:	bison
 BuildRequires:	cairo-devel
-BuildRequires:	check
+BuildRequires:	check-devel >= 0.11.0
 BuildRequires:	flex >= 2.5.39
 BuildRequires:	gdk-pixbuf2-devel
 BuildRequires:	glib2-devel >= 1:2.40
