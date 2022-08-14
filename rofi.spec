@@ -4,12 +4,12 @@
 
 Summary:	A window switcher, application launcher and dmenu replacement
 Name:		rofi
-Version:	1.7.3
+Version:	1.7.4
 Release:	1
 License:	MIT
 Group:		X11/Applications
 Source0:	https://github.com/davatorium/rofi/releases/download/%{version}/%{name}-%{version}.tar.xz
-# Source0-md5:	47e9e9531646d923e150f868375fcd4f
+# Source0-md5:	5ce7a4baefc923663599e8fa9bf9a611
 URL:		https://github.com/davatorium/rofi
 BuildRequires:	bison
 BuildRequires:	cairo-devel
@@ -30,6 +30,9 @@ BuildRequires:	xcb-util-wm-devel
 BuildRequires:	xorg-lib-libxkbcommon-devel >= 0.4.1
 BuildRequires:	xorg-lib-libxkbcommon-x11-devel
 BuildRequires:	xz
+Requires(post,postun):	desktop-file-utils
+Requires(post,postun):	gtk-update-icon-cache
+Requires(post,postun):	hicolor-icon-theme
 Requires:	glib2 >= 1:2.40
 Requires:	xorg-lib-libxkbcommon >= 0.4.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -68,16 +71,28 @@ rm -rf $RPM_BUILD_ROOT
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%post
+%update_desktop_database
+%update_icon_cache hicolor
+
+%postun
+%update_desktop_database
+%update_icon_cache hicolor
+
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS Changelog README.md
 %attr(755,root,root) %{_bindir}/rofi
 %attr(755,root,root) %{_bindir}/rofi-sensible-terminal
 %attr(755,root,root) %{_bindir}/rofi-theme-selector
+%{_desktopdir}/rofi.desktop
+%{_desktopdir}/rofi-theme-selector.desktop
+%{_iconsdir}/hicolor/apps/rofi.svg
 %{_datadir}/rofi
 %{_mandir}/man1/rofi.1*
 %{_mandir}/man1/rofi-sensible-terminal.1*
 %{_mandir}/man1/rofi-theme-selector.1*
+%{_mandir}/man5/rofi-debugging.5*
 %{_mandir}/man5/rofi-dmenu.5*
 %{_mandir}/man5/rofi-keys.5*
 %{_mandir}/man5/rofi-script.5*
