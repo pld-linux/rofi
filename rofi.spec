@@ -5,7 +5,7 @@
 Summary:	A window switcher, application launcher and dmenu replacement
 Name:		rofi
 Version:	1.7.4
-Release:	1
+Release:	2
 License:	MIT
 Group:		X11/Applications
 Source0:	https://github.com/davatorium/rofi/releases/download/%{version}/%{name}-%{version}.tar.xz
