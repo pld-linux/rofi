@@ -4,19 +4,19 @@
 
 Summary:	A window switcher, application launcher and dmenu replacement
 Name:		rofi
-Version:	1.7.5
+Version:	1.7.6
 Release:	1
 License:	MIT
 Group:		X11/Applications
 Source0:	https://github.com/davatorium/rofi/releases/download/%{version}/%{name}-%{version}.tar.xz
-# Source0-md5:	284aea347005af52354a6a8c492a8c03
+# Source0-md5:	680e7d9efaaa9eb69ccd6667c33cb7c2
 URL:		https://github.com/davatorium/rofi
 BuildRequires:	bison
 BuildRequires:	cairo-devel
 %{?with_tests:BuildRequires:	check-devel >= 0.11.0}
 BuildRequires:	flex >= 2.5.39
 BuildRequires:	gdk-pixbuf2-devel
-BuildRequires:	glib2-devel >= 1:2.40
+BuildRequires:	glib2-devel >= 1:2.72
 BuildRequires:	librsvg-devel
 BuildRequires:	libxcb-devel
 BuildRequires:	pango-devel
@@ -26,6 +26,7 @@ BuildRequires:	startup-notification-devel
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xcb-util-cursor-devel
 BuildRequires:	xcb-util-devel
+BuildRequires:	xcb-util-keysyms-devel
 BuildRequires:	xcb-util-wm-devel
 BuildRequires:	xorg-lib-libxkbcommon-devel >= 0.4.1
 BuildRequires:	xorg-lib-libxkbcommon-x11-devel
@@ -33,7 +34,7 @@ BuildRequires:	xz
 Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	gtk-update-icon-cache
 Requires(post,postun):	hicolor-icon-theme
-Requires:	glib2 >= 1:2.40
+Requires:	glib2 >= 1:2.72
 Requires:	xorg-lib-libxkbcommon >= 0.4.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -87,7 +88,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/rofi-theme-selector
 %{_desktopdir}/rofi.desktop
 %{_desktopdir}/rofi-theme-selector.desktop
-%{_iconsdir}/hicolor/apps/rofi.svg
+%{_iconsdir}/hicolor/scalable/apps/rofi.svg
 %{_datadir}/rofi
 %{_mandir}/man1/rofi.1*
 %{_mandir}/man1/rofi-sensible-terminal.1*
@@ -97,6 +98,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man5/rofi-keys.5*
 %{_mandir}/man5/rofi-script.5*
 %{_mandir}/man5/rofi-theme.5*
+%{_mandir}/man5/rofi-thumbnails.5*
 
 %files devel
 %defattr(644,root,root,755)
