@@ -4,12 +4,12 @@
 
 Summary:	A window switcher, application launcher and dmenu replacement
 Name:		rofi
-Version:	1.7.9
+Version:	2.0.0
 Release:	1
 License:	MIT
 Group:		X11/Applications
 Source0:	https://github.com/davatorium/rofi/releases/download/%{version}/%{name}-%{version}.tar.xz
-# Source0-md5:	6c5763a068105cdbc8efbd7f2297a4f4
+# Source0-md5:	3229c91f293acff679dfaea9e07540fc
 URL:		https://github.com/davatorium/rofi
 BuildRequires:	bison
 BuildRequires:	cairo-devel
@@ -17,13 +17,16 @@ BuildRequires:	cairo-devel
 BuildRequires:	flex >= 2.5.39
 BuildRequires:	gdk-pixbuf2-devel
 BuildRequires:	glib2-devel >= 1:2.72
-BuildRequires:	librsvg-devel
 BuildRequires:	libxcb-devel
+BuildRequires:	meson >= 0.59.0
+BuildRequires:	ninja
 BuildRequires:	pango-devel
 BuildRequires:	pkgconfig
-BuildRequires:	rpmbuild(macros) >= 1.527
+BuildRequires:	rpmbuild(macros) >= 2.042
 BuildRequires:	startup-notification-devel
 BuildRequires:	tar >= 1:1.22
+BuildRequires:	wayland-devel
+BuildRequires:	wayland-protocols >= 1.32
 BuildRequires:	xcb-util-cursor-devel
 BuildRequires:	xcb-util-devel
 BuildRequires:	xcb-util-keysyms-devel
@@ -57,17 +60,16 @@ Header files for rofi.
 %{__sed} -i -e '1s,/usr/bin/env bash,/bin/bash,' script/rofi-{sensible-terminal,theme-selector}
 
 %build
-%configure \
-	--disable-silent-rules \
-	%{__enable_disable check}
+%meson \
+	-Dcheck=%{__enabled_disabled tests}
 
-%{__make}
+%meson_build
+%{?with_tests:%meson_test}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
+%meson_install
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -93,6 +95,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/rofi.1*
 %{_mandir}/man1/rofi-sensible-terminal.1*
 %{_mandir}/man1/rofi-theme-selector.1*
+%{_mandir}/man5/rofi-actions.5*
 %{_mandir}/man5/rofi-debugging.5*
 %{_mandir}/man5/rofi-dmenu.5*
 %{_mandir}/man5/rofi-keys.5*
